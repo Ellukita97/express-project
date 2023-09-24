@@ -1,9 +1,9 @@
-import { createPool } from "mysql2/promise";
+import pg from 'pg'
+import {config} from 'dotenv'
 
-export const pool = new createPool({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "lucas",
-  database: "tasksdb",
-});
+config()
+
+export const pool = new pg.Pool({
+  connectionString:process.env.DATABASE_URL,
+  ssl:true
+})
